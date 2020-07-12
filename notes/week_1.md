@@ -23,3 +23,34 @@ https://www.youtube.com/watch?v=y4Gt_LQ8sdA
 - La replicación tiene multiples beneficios como:
    - Si se cae un nodo, los datos no se pierden ya que se encuentran en los otros.
    - Es mas rápida la lectura ya que varios nodos pueden responder a la solicitud de un dato. Podía verse como un load balancer naturalmente
+   - Cuando un nodo caido vuelve a levantarse, se sincroniza nuevamente.
+   - El valor estandar es RF=3
+
+#### CAP Theorem
+
+
+Consistency, Availability, Partition Tolerance
+
+En un sistema distribuido, en el caso de una falla solo se pueden garantizar 2 de las 3 cualidades
+
+Cassandra por default es un AP system --> garantiza Availability y Partition Tolerance
+(Aunque puede configurarse para CP system, lo bueno de esto es que puede configurarse por query)
+
+
+Consistency levels and replication factor
+**RF = 3**
+- CL=ONE: alcanza con que uno de los nodos replica responda el ACK al nodo coordinador
+- CL=QUORUM:  alcanza con que dos de los nodos replica respondan el ACK al nodo coordinador
+- CL=ALL:  TODOS los nodos replica respondan el ACK al nodo coordinador
+
+Este aumento de consistencia tiene su contraparte en que aumenta la latencia, debido a que se debe esperar que aumente la cantidad de nodos que responden
+
+##### Immediate Consistency
+
+- CL(read) + CL(write) > RF
+- CL(read)[QUORUM] + CL(write)[QUORUM] ==> Estandar
+
+
+##### Weak(er) Consistency/ Eventual consistency
+- CL(read)[ONE] + CL(write)[ONE] ==> Estandar
+
