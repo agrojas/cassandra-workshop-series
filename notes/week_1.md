@@ -1,6 +1,9 @@
 # Week 1
 
 ## Class 1
+- Curso
+https://academy.datastax.com/resources/ds201-datastax-enterprise-6-foundations-of-apache-cassandra
+- Streaming
 https://www.youtube.com/watch?v=y4Gt_LQ8sdA 
 
 ### Notes
@@ -76,3 +79,21 @@ Cassandra write data very fast -->
 
 - Modern CLoud Applications
     - API Layer, Hybrid-cloud | enterprise Data Layer | Multi-cloud
+    
+## Write path
+
+RAM (MemTable) --> Los registros ya se guardan ordenados
+DISK(CommitLog | SSTABLE) --> 
+- cada nuevo registro se agrega al final del commit log
+- Mediante el FLUSH se persisten los datos de la MemTable en la SSTABLE
+- SSTABLE son inmutables
+
+
+## Read path
+1) MemTable --> Partition index para tener indexada la busqueda en disco.
+- El indice es el token, el valor es el byte offset
+1.1) Partition Summary (RAM) --> es el indice del indice
+- La entrada es un rango de token validos y me indexa al Indice del Partition Index
+1.1.1) Key Cache (RAM) --> Cache para busquedas de indice
+1.1.1.1) Bloom Filter ???
+2) SSTable (N SSTables)
