@@ -54,3 +54,25 @@ Este aumento de consistencia tiene su contraparte en que aumenta la latencia, de
 ##### Weak(er) Consistency/ Eventual consistency
 - CL(read)[ONE] + CL(write)[ONE] ==> Estandar
 
+### Use Cases
+
+#### Scalability
+Cassandra write data very fast --> 
+- High Throughput | High volume ---> 
+    - Heavy Writes |Heavy Reads ----> 
+     - Event streaming,log| iot, other time series
+#### Avaiability
+- Mission Critical --> 
+   - NO DATA LOSS | Always on
+    - Caching, Pricing| Market Data, Inventorye
+   
+#### Distributed
+
+- Global Presence | Workload mobility
+    - Compilance/GDPR
+     - Banking, Retail | Tracking/logistics, customer experience
+
+#### Cloud-Native
+
+- Modern CLoud Applications
+    - API Layer, Hybrid-cloud | enterprise Data Layer | Multi-cloud
